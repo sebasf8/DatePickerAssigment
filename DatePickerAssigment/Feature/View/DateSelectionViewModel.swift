@@ -30,7 +30,7 @@ class DateSelectionViewModel: ObservableObject {
     @MainActor
     func updateSelectedDate() {
         guard selectedDate <= .now else {
-            validationErrorMessage = "Date must be in the past"
+            validationErrorMessage = "Checkin date must be in the past"
             return
         }
         
