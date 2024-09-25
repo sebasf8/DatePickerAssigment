@@ -7,17 +7,19 @@
 import Foundation
 
 class HomeViewModel: ObservableObject {
-    @Published private(set) var companyName: String = ""
+    @Published private(set) var greetings: String = ""
 
-    private let coordinator: FeatureCoordinatorProtocol
+    private let coordinator: CheckinCoordinatorProtocol
 
-    init(coordinator: FeatureCoordinatorProtocol) {
+    init(coordinator: CheckinCoordinatorProtocol) {
         self.coordinator = coordinator
     }
 
     @MainActor
     func load() {
-        companyName = (try? DependencyContainer.shared.companyService.fetchCompany().name) ?? ""
+        guard let companyName = try? DependencyContainer.shared.companyService.fetchCompany().name else { return }
+
+        greetings = "Welcome to Checkin app, an \(companyName) product"
     }
 
     func startButtonTapped() {

@@ -39,7 +39,7 @@ private extension HomeView {
             companyLabel.widthAnchor.constraint(equalToConstant: 200),
             companyLabel.heightAnchor.constraint(equalToConstant: 50),
             companyLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            companyLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor),
+            companyLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -40),
         ])
     }
 
@@ -53,12 +53,12 @@ private extension HomeView {
     }
 
     func makeCompanyLabel() -> UILabel {
-        let frame = CGRect(x: 0, y: 0, width: 200, height: 21)
-        let label = UILabel(frame: frame)
+        let label = UILabel()
 
         label.text = "Company"
         label.textColor = .white
         label.textAlignment = .center
+        label.numberOfLines = 0
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
 

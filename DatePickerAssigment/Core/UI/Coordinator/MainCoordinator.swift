@@ -23,7 +23,7 @@ final class MainCoordinator: Coordinator {
     }
 }
 
-extension MainCoordinator: FeatureCoordinatorProtocol {
+extension MainCoordinator: CheckinCoordinatorProtocol {
     func navigateToDateSelection() {
         let vc = UIHostingController(rootView: DateSelectionView(viewModel: DateSelectionViewModel()))
         navigationController.pushViewController(vc, animated: true)

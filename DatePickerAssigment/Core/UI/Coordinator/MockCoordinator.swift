@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MockCoordinator: FeatureCoordinatorProtocol {
+class MockCoordinator: CheckinCoordinatorProtocol {
     var spy = Spy()
     var children: [Coordinator] = []
 

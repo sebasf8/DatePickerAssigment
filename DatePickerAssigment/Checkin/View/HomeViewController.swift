@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
     }
 
     private func setupBindings() {
-        homeViewModel.$companyName
+        homeViewModel.$greetings
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
             .assign(to: \.text, on: homeView.companyLabel)
