@@ -14,4 +14,9 @@ protocol CheckinProvider {
     ///
     /// - Returns: The default checkin time for the employee
     func getCheckin() async throws -> CheckinModel
+
+
+    /// Persist an employee checkin
+    /// - Parameter checkin: The employee checkin to persist
+    func save(checkin: CheckinModel) throws
 }

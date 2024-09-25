@@ -10,4 +10,5 @@ import Foundation
 class ProductionContainer: Container {
     var logger: Logger = PrintLogger()
     var checkinService: CheckinProvider = CheckinService()
+    var coreDataStack = CoreDataStack.shared
 }

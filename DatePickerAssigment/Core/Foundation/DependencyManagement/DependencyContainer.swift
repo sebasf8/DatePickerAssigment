@@ -10,6 +10,8 @@ import Foundation
 class DependencyContainer {
     static private(set)var shared: Container = ProductionContainer()
 
+    private init() {}
+    
     func registerDependencies(container: Container) {
         DependencyContainer.shared = container
     }

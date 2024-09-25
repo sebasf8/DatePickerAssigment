@@ -11,4 +11,6 @@ struct MockCheckinService: CheckinProvider {
     func getCheckin() async throws -> CheckinModel {
         CheckinModel(dateTime: .now)
     }
+
+    func save(checkin: CheckinModel) throws {}
 }

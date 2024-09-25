@@ -33,13 +33,12 @@ class DateSelectionViewModel: ObservableObject {
             validationErrorMessage = "Date must be in the past"
             return
         }
-
-        validationErrorMessage = ""
-        Task {
-            sleep(1)
-            let formattedDate = DateFormatter.customDateFormatter.string(from: selectedDate)
-            print("Selected date: \(formattedDate)")
-            state = .ready
+        
+        do {
+            try service.save(checkin: CheckinModel(dateTime: selectedDate))
+            validationErrorMessage = ""
+        } catch {
+            validationErrorMessage = "There was an error saving the data"
         }
     }
 }
