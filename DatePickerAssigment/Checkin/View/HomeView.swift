@@ -11,6 +11,7 @@ import UIKit
 class HomeView: UIView {
     private var viewModel: HomeViewModel
     private lazy var startButton: UIButton = makeStartButton()
+    lazy var companyLabel: UILabel = makeCompanyLabel()
 
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -27,13 +28,18 @@ class HomeView: UIView {
 private extension HomeView {
     func configureView() {
         addSubview(startButton)
+        addSubview(companyLabel)
         configureConstraints()
     }
 
     func configureConstraints() {
         addConstraints([
-            startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            startButton.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            startButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            startButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            companyLabel.widthAnchor.constraint(equalToConstant: 200),
+            companyLabel.heightAnchor.constraint(equalToConstant: 50),
+            companyLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            companyLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor),
         ])
     }
 
@@ -44,6 +50,19 @@ private extension HomeView {
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
+    }
+
+    func makeCompanyLabel() -> UILabel {
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 21)
+        let label = UILabel(frame: frame)
+
+        label.text = "Company"
+        label.textColor = .white
+        label.textAlignment = .center
+        label.sizeToFit()
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
     }
 
     @objc func startButtonTapped() {

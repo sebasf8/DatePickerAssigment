@@ -10,6 +10,7 @@ import CoreData
 
 class MockContainer: Container {
     var checkinService: CheckinProvider = MockCheckinService()
+    var companyService: CompanyProvider = MockCompanyService()
     var logger: any Logger = PrintLogger()
     var coreDataStack = CoreDataStack.shared
     
