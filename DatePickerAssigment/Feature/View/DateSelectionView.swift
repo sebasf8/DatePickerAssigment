@@ -26,20 +26,27 @@ struct DateSelectionView: View {
 
 private extension DateSelectionView {
     @ViewBuilder var content: some View {
-        VStack {
-            DatePicker("Select a date", selection: $viewModel.selectedDate)
+        Form {
+            Section {
+                DatePicker("Checkin", selection: $viewModel.selectedDate)
 
-            Button {
-                Task {
-                    viewModel.updateSelectedDate()
+                Button {
+                    Task {
+                        viewModel.updateSelectedDate()
+                    }
+                } label: {
+                    Text("Submit")
                 }
-            } label: {
-                Text("Submit")
             }
-            .padding()
-        }
-        .padding()
 
+            if !viewModel.validationErrorMessage.isEmpty {
+                Section {
+                    Text(viewModel.validationErrorMessage)
+                        .foregroundColor(.red)
+
+                }
+            }
+        }
     }
 }
 
