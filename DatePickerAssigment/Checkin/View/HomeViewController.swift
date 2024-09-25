@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
+        // We don't support storyboards.
         preconditionFailure("init(coder:) has not been implemented")
     }
     

@@ -13,7 +13,6 @@ protocol Logger {
     /// - Parameter message: message to register.
     func log(_ message: String)
 
-
     /// Logs an error
     /// - Parameter error: Error to register.
     func log(_ error: Error)

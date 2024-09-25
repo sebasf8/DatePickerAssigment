@@ -12,7 +12,7 @@ class DependencyContainer {
 
     private init() {}
     
-    func registerDependencies(container: Container) {
+    static func registerDependencies(container: Container) {
         DependencyContainer.shared = container
     }
 }
