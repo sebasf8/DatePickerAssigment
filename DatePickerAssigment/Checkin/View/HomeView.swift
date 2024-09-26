@@ -8,17 +8,17 @@
 import Foundation
 import UIKit
 
+/// Class not used. was created as base to migrate it to objc.
 class HomeView: UIView {
-    private var viewModel: HomeViewModel
-    private lazy var startButton: UIButton = makeStartButton()
+    lazy var startButton: UIButton = makeStartButton()
     lazy var companyLabel: UILabel = makeCompanyLabel()
 
-    init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
+    init() {
         super.init(frame: .zero)
         configureView()
     }
-
+    
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         // We don't support storyboards nor xib implementations
         preconditionFailure("init(coder:) has not been implemented")
@@ -41,13 +41,14 @@ private extension HomeView {
             companyLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             companyLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -40),
         ])
+
+        startButton.translatesAutoresizingMaskIntoConstraints = false
+        companyLabel.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func makeStartButton() -> UIButton {
         let button = UIButton()
         button.setTitle("Start", for: .normal)
-        button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }
@@ -60,12 +61,7 @@ private extension HomeView {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.sizeToFit()
-        label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
-    }
-
-    @objc func startButtonTapped() {
-        viewModel.startButtonTapped()
     }
 }

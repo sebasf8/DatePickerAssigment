@@ -10,12 +10,12 @@ import UIKit
 
 class HomeViewController: UIViewController {
     private let homeViewModel: HomeViewModel
-    private let homeView: HomeView
+    private let homeView: HomeViewObjcView
     private var subscriptions = Set<AnyCancellable>()
 
     init(homeViewModel: HomeViewModel) {
         self.homeViewModel = homeViewModel
-        self.homeView = HomeView(viewModel: homeViewModel)
+        self.homeView = HomeViewObjcView()
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -24,22 +24,33 @@ class HomeViewController: UIViewController {
         // We don't support storyboards.
         preconditionFailure("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBindings()
+        setupActions()
         homeViewModel.load()
     }
 
     override func loadView() {
         view = homeView
     }
+}
 
-    private func setupBindings() {
+private extension HomeViewController {
+     func setupBindings() {
         homeViewModel.$greetings
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
             .assign(to: \.text, on: homeView.companyLabel)
             .store(in: &subscriptions)
+    }
+
+    func setupActions() {
+        homeView.startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+    }
+
+    @objc func startButtonTapped() {
+        homeViewModel.startButtonTapped()
     }
 }

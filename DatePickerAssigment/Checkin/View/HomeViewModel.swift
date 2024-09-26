@@ -19,7 +19,7 @@ class HomeViewModel: ObservableObject {
     func load() {
         guard let companyName = try? DependencyContainer.shared.companyService.fetchCompany().name else { return }
 
-        greetings = "Welcome to Checkin app, an \(companyName) product"
+        greetings = "Welcome to Checkin app, an \(companyName) product."
     }
 
     func startButtonTapped() {
