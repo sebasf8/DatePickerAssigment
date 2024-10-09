@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 /// Control the navigation flow of the app or module
-protocol Coordinator {
+@objc protocol Coordinator {
     var children: [Coordinator] { get }
 
     var navigationController: UINavigationController { get }

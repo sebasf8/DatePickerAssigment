@@ -10,7 +10,7 @@ import Foundation
 class CompanyService: CompanyProvider {
     private lazy var coreDataStack = DependencyContainer.shared.coreDataStack
 
-    func fetchCompany() throws -> CompanyModel {
+    func fetchCompany() -> CompanyModel {
         do {
             let company = try? coreDataStack.persistentContainer.viewContext.fetch(Company.fetchRequest()).first
 
@@ -21,7 +21,7 @@ class CompanyService: CompanyProvider {
             return CompanyModel(name: company.name ?? "")
         } catch {
             DependencyContainer.shared.logger.log(error)
-            throw error
+            return CompanyModel(name: "")
         }
     }
 }

@@ -18,7 +18,10 @@ final class MainCoordinator: Coordinator {
     }
 
     func start() {
-        let vc = HomeViewController(homeViewModel: HomeViewModel(coordinator: self))
+        guard let vc = HomeViewController(coordinator: self, companyService: DependencyContainer.shared.companyService) else {
+            preconditionFailure("No view was initialized")
+        }
+
         navigationController.pushViewController(vc, animated: true)
     }
 }

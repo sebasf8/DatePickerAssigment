@@ -7,6 +7,10 @@
 
 import Foundation
 
-struct CompanyModel {
-    let name: String
+@objc class CompanyModel: NSObject {
+    @objc var name: String
+
+    init(name: String) {
+        self.name = name
+    }
 }

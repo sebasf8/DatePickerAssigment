@@ -28,7 +28,7 @@ private extension DateSelectionView {
     @ViewBuilder var content: some View {
         Form {
             Section {
-                DatePicker("Checkin", selection: $viewModel.selectedDate)
+                DatePicker("Checkin", selection: $viewModel.selectedDate, in: .distantPast ... .now)
 
                 Button {
                     Task {

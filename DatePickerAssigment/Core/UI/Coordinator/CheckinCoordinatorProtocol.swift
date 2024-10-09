@@ -9,6 +9,6 @@ import Foundation
 import UIKit
 import SwiftUI
 
-protocol CheckinCoordinatorProtocol: Coordinator {
+@objc protocol CheckinCoordinatorProtocol: Coordinator {
     func navigateToDateSelection()
 }
