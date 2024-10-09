@@ -7,6 +7,7 @@
 
 import Foundation
 
-protocol CompanyProvider {
-    func fetchCompany() throws -> CompanyModel
+@objc protocol CompanyProvider {
+
+    func fetchCompany() -> CompanyModel
 }

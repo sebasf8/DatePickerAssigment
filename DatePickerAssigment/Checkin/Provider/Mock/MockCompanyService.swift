@@ -8,7 +8,7 @@
 import Foundation
 
 class MockCompanyService: CompanyProvider {
-    func fetchCompany() throws -> CompanyModel {
+    func fetchCompany() -> CompanyModel {
         CompanyModel(name: "")
     }
 }

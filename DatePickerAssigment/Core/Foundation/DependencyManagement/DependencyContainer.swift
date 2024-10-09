@@ -7,11 +7,11 @@
 
 import Foundation
 
-class DependencyContainer {
+@objc class DependencyContainer: NSObject {
     static private(set)var shared: Container = ProductionContainer()
 
-    private init() {}
-    
+    override private init() {}
+
     static func registerDependencies(container: Container) {
         DependencyContainer.shared = container
     }
