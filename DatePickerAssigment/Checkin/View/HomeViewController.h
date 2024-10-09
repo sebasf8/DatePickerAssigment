@@ -6,7 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HomeViewObjcView.h"
 
 @protocol CheckinCoordinatorProtocol;
 @protocol CompanyProvider;
@@ -15,7 +14,8 @@
 
 @property (nonatomic, strong) id<CheckinCoordinatorProtocol> coordinator;
 @property (nonatomic, strong) id<CompanyProvider> companyService;
-@property (nonatomic, strong) HomeViewObjcView *homeView;
+@property (nonatomic, strong) UIButton *startButton;
+@property (nonatomic, strong) UILabel *companyLabel;
 
 - (instancetype)initWithCoordinator:(id<CheckinCoordinatorProtocol>)coordinator companyService:(id<CompanyProvider>)companyService;
 

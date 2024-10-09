@@ -16,7 +16,6 @@
     if (self) {
         self.coordinator = coordinator;
         self.companyService = companyService;
-        self.homeView = [[HomeViewObjcView alloc] init];
     }
     return self;
 }
@@ -34,19 +33,17 @@
 }
 
 - (void)loadView {
-    self.view = self.homeView;
+    [self configureView];
 }
-
-#pragma mark - Private Methods
 
 - (void)load {
     NSString *companyName = [self.companyService fetchCompany].name;
 
-    self.homeView.companyLabel.text = [NSString stringWithFormat:@"Welcome to Checkin app, an %@ product.", companyName];
+    self.companyLabel.text = [NSString stringWithFormat:@"Welcome to Checkin app, an %@ product.", companyName];
 }
 
 - (void)setupActions {
-    [self.homeView.startButton addTarget:self
+    [self.startButton addTarget:self
                                   action:@selector(startButtonTapped)
                         forControlEvents:UIControlEventTouchUpInside];
 }
@@ -55,4 +52,45 @@
     [self.coordinator navigateToDateSelection];
 }
 
+- (void)configureView {
+    self.view = [[UIView alloc] init];
+    [self.view addSubview:self.startButton];
+    [self.view addSubview:self.companyLabel];
+    [self configureConstraints];
+}
+
+- (void)configureConstraints {
+    self.startButton.translatesAutoresizingMaskIntoConstraints = NO;
+    self.companyLabel.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.startButton.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
+        [self.startButton.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
+        [self.companyLabel.widthAnchor constraintEqualToConstant:200],
+        [self.companyLabel.heightAnchor constraintEqualToConstant:50],
+        [self.companyLabel.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
+        [self.companyLabel.bottomAnchor constraintEqualToAnchor:self.startButton.topAnchor constant:-40],
+    ]];
+}
+
+- (UIButton *)startButton {
+    if (!_startButton) {
+        _startButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_startButton setTitle:@"Start" forState:UIControlStateNormal];
+    }
+
+    return _startButton;
+}
+
+- (UILabel *)companyLabel {
+    if (!_companyLabel) {
+        _companyLabel = [[UILabel alloc] init];
+        _companyLabel.textColor = [UIColor whiteColor];
+        _companyLabel.textAlignment = NSTextAlignmentCenter;
+        _companyLabel.numberOfLines = 0;
+        [_companyLabel sizeToFit];
+    }
+
+    return _companyLabel;
+}
 @end
